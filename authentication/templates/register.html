@@ -1,0 +1,11 @@
+{% if user.is_authenticated %}
+You are logged in
+{% else %}
+<h1>Register for Arctic Expedition Proposal part 1</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ register_form }}
+    <button type="submit">Go to Part 2</button>
+</form>
+{% endif %}

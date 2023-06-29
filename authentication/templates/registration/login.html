@@ -1,0 +1,15 @@
+{% if division %}
+    <h1>Welcome to {{ division }} Expedition Proposal Submission</h1>
+{% else %}
+<h1>Welcome to Expedition Proposal Submission</h1>
+{% endif %}
+
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Login</button>
+</form>
+
+Forgot Password
+
+<a href="/register">Register</a>

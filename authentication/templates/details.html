@@ -1,0 +1,7 @@
+<h1>Register for Arctic Expedition Proposal part 2</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ details_form }}
+    <button type="submit">Finish Registration</button>
+</form>

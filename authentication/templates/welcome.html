@@ -1,0 +1,9 @@
+<h1>Welcome to Expedition Proposal Submission</h1>
+
+<form action='choose_division' method='POST'>
+    {% csrf_token %}
+    <button type='submit' name='division' value='Arctic'>Arctic</button>
+    <button type='submit' name='division' value='Himalaya'>Himalaya</button>
+    <button type='submit' name='division' value='Southern Ocean'>Southern Ocean</button>
+    <button type='submit' name='division' value='Antarctica'>Antarctica</button>
+</form>
