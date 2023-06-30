@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     "phonenumber_field",
+    'proposals',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = "/home"
+LOGIN_REDIRECT_URL = "/proposals/home"
 LOGOUT_REDIRECT_URL = "/accounts/login"
 
 WSGI_APPLICATION = 'website.wsgi.application'
@@ -128,3 +130,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"

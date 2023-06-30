@@ -7,7 +7,6 @@ app_name = 'authentication'
 urlpatterns = [
     path('', views.welcome),
     path('choose_division', views.division_choose),
-    path('home', views.home),
     path('register', views.register),
     path('details', views.details),
 ]

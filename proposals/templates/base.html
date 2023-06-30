@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% block css %}{% endblock css%}
+    <!-- <link rel="stylesheet" type='css' href="{% static 'main.css' %}"> -->
+</head>
+
+<body style="background-image: url('https://ncpor.res.in/upload/background/Background/big/Background-45.jpg'); height: 100%">
+    <div class="container" style="width: 75%">
+        <nav>
+            <ul class="nav bg-info">
+                <li class="nav-item">
+                    <a class="nav-link" href="/proposals/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proposals/home">Call for Proposal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proposals/home">Submit new Proposal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://ncpor.res.in">NCPOR</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proposals/home">Help</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div style="background-color: white; min-height: 100vh">
+            <h1 class="text-center">{% block head %}{% endblock head %}</h1><hr>
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+</body>
+
+</html>

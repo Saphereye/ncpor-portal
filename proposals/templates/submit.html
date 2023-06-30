@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Submission of New Proposal{% endblock title %}
+
+{% block head %}Submission of New Proposal{% endblock head %}
+
+{% block content %}
+    <div style="width: 75%; margin: auto; padding: 50px;">
+        <h2>How to submit</h2>
+        <ul>
+            <li>Go step by step</li>
+        </ul>
+    </div>
+    <div style="width: 75%; margin: auto; padding: 50px;">
+        <nav class="d-flex justify-content-center">
+            <ul class="nav bg-info">
+                <li class="nav-item">
+                    <a class="nav-link" href="/proposals/submit/details">Project Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proposals/submit/files">Attach files</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proposals/submit/summary">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proposals/submit/finish">Submit</a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            Step {{ step }}
+            {{ title }}
+            {% if step == 1 %}
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ details_form.as_p }}
+                    <button type="submit">Continue</button>
+                </form>
+            {% elif step == 2 and title %}
+            Yesy
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

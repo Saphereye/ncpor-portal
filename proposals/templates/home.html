@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title%}Home{% endblock title %}
+
+{% block head %}Home{% endblock head %}
+
+{% block content %}
+    Hi {{ user.email }}!
+
+    <div style="width: 50%; margin: auto; padding: 50px;">
+        <h2>New Submissions</h2>
+        <ul>
+            <li><a href="/proposals/submit">Submit New Proposal</a></li>
+            <li>Incomplete Submissions (0)</li>
+            <li>Submissions Waiting for Author's Approval (0)</li>
+            <li>Submissions Being Processed (0)</li>
+        </ul>
+        <h2>Revisions</h2>
+        <ul>
+            <li>Submissions Needing Revision (0)</li>
+            <li>Incomplete Submissions Being Revised (0)</li>
+            <li>Revisions Waiting for Author's Approval (0)</li>
+            <li>Revisions Being Processed (0)</li>
+        </ul>
+        <h2>Completed</h2>
+        <ul>
+            Submissions with a Decision (0)
+        </ul>
+    </div>
+
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% endblock content %}

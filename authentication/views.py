@@ -42,14 +42,6 @@ def division_choose(request):
 #     )
 
 
-def home(request):
-    return render(
-        request=request,
-        template_name="home.html",
-        context={},
-    )
-
-
 def register(request):
     if request.method == "POST":
         register_form = RegisterForm(request.POST)
