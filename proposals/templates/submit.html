@@ -39,8 +39,42 @@
                     <button type="submit">Continue</button>
                 </form>
             {% elif step == 2 and title %}
-            Yesy
-            {% else %}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ files_form.as_p }}
+                    <button type="submit">Continue</button>
+                </form>
+            {% elif step == 3 and title %}
+                <div style="width: 75%; margin: auto; padding: 50px;">
+                    {% if details %}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                    
+                            {% for i, j in details %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ j }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button type="submit">Submit</button>
+                        </form>
+                    {% else %}
+                        <h2>Please Fill the previous forms<h2>
+                    {% endif %}
+                </div>
+            {% elif step == 4%}
+                <div style="width: 75%; margin: auto; padding: 50px;">
+                    <a href="/proposals/home">Your proposal has been submitted !!!</a>
+                </div>
             {% endif %}
         </div>
     </div>

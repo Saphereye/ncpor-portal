@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Incomplete Proposals{% endblock title %}
+
+{% block head %}Incomplete Proposals{% endblock head %}
+
+{% block content %}
+    <div style="width: 75%; margin: auto; padding: 50px;">
+        {% if proposals %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, p, p_link in proposals %}
+                        <tr>
+                            <td>{{ index }}</td>
+                            <td><a href="submit/details/{{ p_link }}/">{{ p }}<a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            No Proposal Incomplete
+        {% endif %}
+    </div>
+{% endblock content %}
