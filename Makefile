@@ -19,7 +19,7 @@ static:
 app:
 	python3 manage.py startapp $(name)
 
-# Use it like make deploy msg=Made some changes
+# Use it like make deploy msg="Made some changes"
 deploy:
 	git pull
 	pip freeze > requirements.txt
@@ -35,3 +35,6 @@ upgrade:
 
 update:
 	pip freeze > requirements.txt
+
+print:
+	echo "$(msg)"

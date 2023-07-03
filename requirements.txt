@@ -4,11 +4,13 @@ Django==4.2.2
 django-bootstrap-v5==1.0.11
 django-formtools==2.4.1
 django-phonenumber-field==7.1.0
+gunicorn==20.1.0
 numpy==1.25.0
 packaging==23.1
 pandas==2.0.3
 phonenumbers==8.13.15
 plotly==5.15.0
+psycopg2-binary==2.9.6
 python-dateutil==2.8.2
 pytz==2023.3
 six==1.16.0
