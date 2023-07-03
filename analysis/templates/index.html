@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Data Analysis{% endblock title %}
+
+{% block head %}Data Analysis{% endblock head %}
+
+{% block content %}
+    <div style="width: 75%; margin: auto; padding: 50px;">
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <button type="submit">Continue</button>
+        </form>
+    </div>
+
+    {% autoescape off %}
+    {{ plot_div }}
+    {% endautoescape %}
+{% endblock %}
