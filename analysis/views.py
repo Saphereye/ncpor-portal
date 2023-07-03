@@ -49,6 +49,9 @@ def main(request):
                 )
             ],
             output_type="div",
+            include_plotlyjs=False,
+            show_link=False,
+            link_text=""
         )
     return render(request, "index.html", context={"plot_div": plot_div, "form": form})
     # return render(
