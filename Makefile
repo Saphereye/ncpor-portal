@@ -22,9 +22,11 @@ app:
 # Use it like make deploy msg=Made some changes
 deploy:
 	git pull
+	pip freeze > requirements.txt
 	python3 manage.py makemigrations
 	python3 manage.py migrate
 	python3 manage.py collectstatic
+	git add .
 	git commit -m "$(msg)"
 	git push
 
