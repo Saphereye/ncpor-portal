@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title%}All Proposals{% endblock %}
+
+{% block head %}All Proposals{% endblock %}
+
+{% block content %}
+{% if output %}
+<div>
+<table class="table">
+        <thead>
+            <tr>
+                {% for row, _ in heads %}
+                    <th>{{ row }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        {% for row in output %}
+        <tbody>
+                <tr>
+
+            {% for title, value in row %}
+                    <td>{{ value }}</td>
+            {% endfor %}
+                </tr>
+        </tbody>
+    {% endfor %}
+</table>
+</div>
+{% else %}
+No Proposal complete
+{% endif %}
+{% endblock %}

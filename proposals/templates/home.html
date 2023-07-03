@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title%}Home{% endblock title %}
+{% block title%}Home{% endblock %}
 
-{% block head %}Home{% endblock head %}
+{% block head %}Home{% endblock %}
 
 {% block content %}
     Hi {{ user.email }}!
@@ -14,6 +14,7 @@
             <li><a href="/proposals/incomplete">Incomplete Submissions</a> ({{ incomplete }})</li>
             <li>Submissions Waiting for Author's Approval (0)</li>
             <li>Submissions Being Processed (0)</li>
+            <li><a href="/proposals/all">All Submissions<a> ({{ all }})</li>
         </ul>
         <h2>Revisions</h2>
         <ul>
@@ -29,4 +30,4 @@
     </div>
 
     <p><a href="{% url 'logout' %}">Log Out</a></p>
-{% endblock content %}
+{% endblock %}

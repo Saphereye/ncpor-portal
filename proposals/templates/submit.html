@@ -35,18 +35,23 @@
             {% if step == 1 %}
                 <form method="POST">
                     {% csrf_token %}
-                    {{ details_form.as_p }}
+                    <table>
+                        {{ details_form.as_table }}
+                    </table>
                     <button type="submit">Continue</button>
                 </form>
             {% elif step == 2 and title %}
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ files_form.as_p }}
+                    <table>
+                        {{ files_form.as_table }}
+                    </table>
                     <button type="submit">Continue</button>
                 </form>
             {% elif step == 3 and title %}
                 <div style="width: 75%; margin: auto; padding: 50px;">
                     {% if details %}
+                    <h2>Details</h2>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -62,13 +67,33 @@
                             </tr>
                             {% endfor %}
                         </table>
+                    {% else %}
+                        <h2>Please Fill the details form and press the continue button to save data<h2>
+                    {% endif %}
+                    {% if files %}
+                    <h2>Files</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Is Submitted?</th>
+                                </tr>
+                            </thead>
+                    
+                            {% for i, j in files %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ j }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
 
                         <form method="POST">
                             {% csrf_token %}
                             <button type="submit">Submit</button>
                         </form>
                     {% else %}
-                        <h2>Please Fill the previous forms<h2>
+                        <h2>Please Fill the files form and press the continue button to save data<h2>
                     {% endif %}
                 </div>
             {% elif step == 4%}

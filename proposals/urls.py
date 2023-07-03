@@ -14,6 +14,7 @@ urlpatterns = [
     path('submit/summary', views.submit_summary),
     path('submit/summary/<slug:title>/', views.submit_summary),
     path('submit/finish', views.submit_finish),
-    path('incomplete', views.incomplete_proposals)
+    path('incomplete', views.incomplete_proposals),
+    path('all', views.all),
 ]
 

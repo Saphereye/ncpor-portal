@@ -15,7 +15,8 @@ class Details(models.Model):
         ('Ongoing', 'Ongoing'),
         ('New', 'New')
     )
-    title_of_proposal = models.CharField(max_length=20, null=False , unique=True, primary_key=True)
+    email = models.EmailField()
+    title_of_proposal = models.CharField(max_length=50, null=False , unique=True, primary_key=True)
     major_discipline = models.CharField(max_length = 30,choices = DISCIPLINE_CHOICES, null=False)
     sub_theme = models.CharField(max_length=20, null=False)
     key_words = models.CharField(max_length=50)
@@ -23,7 +24,8 @@ class Details(models.Model):
     brief_description = models.TextField(max_length=250)
 
 class Files(models.Model):
-    title_of_proposal = models.CharField(max_length=20, null=False , unique=True, primary_key=True)
+    email = models.EmailField()
+    title_of_proposal = models.CharField(max_length=50, null=False , unique=True, primary_key=True)
     cover_letter = models.FileField(null=True, blank=True, name="Attach Cover Letter", upload_to="media/")
     project_proposal = models.FileField(null=True, blank=True, name="Attach the detailed Project proposal(Download Template (.docx file) ", upload_to="media/")
     endorsement_letter = models.FileField(null=True, blank=True, name="Attach the detailed Project proposal(Download Appendix I Template (.docx file)", upload_to="media/")
@@ -32,4 +34,10 @@ class Files(models.Model):
 
 class IncompleteProposals(models.Model):
     email = models.EmailField()
-    title = models.CharField(max_length=20, null=False , unique=True)
+    title = models.CharField(max_length=50, null=False , unique=True)
+
+class ProposalMeta(models.Model):
+    email = models.EmailField()
+    title = models.CharField(max_length=50, null=False , unique=True)
+    is_author_approved = models.BooleanField(default=False)
+    is_processed = models.BooleanField(default=False)
