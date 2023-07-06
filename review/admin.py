@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Revisers
 
-# Register your models here.
+@admin.register(Revisers)
+class RevisersAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Revisers._meta.get_fields() if field.concrete]
