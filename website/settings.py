@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'proposals',
     'bootstrap5',
     'analysis',
+    'review',
 ]
 
 MIDDLEWARE = [

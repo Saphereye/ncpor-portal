@@ -5,7 +5,7 @@ from .models import Details, Files
 class DetailsForm(forms.ModelForm):
     class Meta:
         model = Details
-        exclude = ("email", )
+        exclude = ("email", "proposal_number")
 
 
 class FilesForm(forms.ModelForm):

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title%}Revision{% endblock %}
+
+{% block head %}Revision{% endblock %}
+
+{% block content %}
+    <div style="width: 100%; margin: auto; padding: 50px;">
+        <div class="table-responsive">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            {% for row in heads %}
+                                <th>{{ row }}</th>
+                            {% endfor %}
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    {% for row in output %}
+                    <tbody>
+                        <tr>
+                            {% for value in row %}
+                                    <td>{{ value }}</td>
+                            {% endfor %}
+                            <td>
+                                <div>
+                                    <a href="google.com">ABCD</a>
+                                    <a href="google.com">ABCD</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+            </div>
+    </div>
+{% endblock %}

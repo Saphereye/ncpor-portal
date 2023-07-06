@@ -5,6 +5,7 @@ from .forms import DetailsForm, FilesForm
 from .models import Details, Files, IncompleteProposals
 from django.shortcuts import get_object_or_404
 from django.forms.models import model_to_dict
+from hashlib import shake_256
 
 
 @login_required
@@ -47,6 +48,7 @@ def submit_details(request, title: str = ""):
                 email=request.user.email, title=title
             )
             details.email = request.user.email
+            details.proposal_number = shake_256(str(details).encode()).hexdigest(6)
             details.save()
             messages.success(request, "Details saved successful.")
             return redirect(f"/proposals/submit/files/{title.replace(' ', '_')}/")
@@ -158,7 +160,7 @@ def submit_summary(request, title: str = ""):
             "details": [
                 (i.replace("_", " ").capitalize(), j)
                 for (i, j) in details[0].items()
-                if i not in ["id", "email"]
+                if i not in ["id", "email"] and j is not None and j != ""
             ]
             if details
             else None,
