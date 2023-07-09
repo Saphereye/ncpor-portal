@@ -6,7 +6,8 @@ from .models import CustomUser
 
 
 def welcome(request) -> HttpResponse:
-    return render(request=request, template_name="welcome.html", context={})
+    # return render(request=request, template_name="welcome.html", context={})
+    return redirect("/proposals/home")
 
 
 def division_choose(request):
@@ -66,7 +67,7 @@ def details(request):
             details.email = CustomUser.objects.get(email=request.user.email)
             details.save()
             messages.success(request, "Details saved successful.")
-            return redirect("/home")
+            return redirect("/proposals/home")
         messages.error(request, "Details not saved. Invalid information.")
     details_form = DetailsForm()
     return render(

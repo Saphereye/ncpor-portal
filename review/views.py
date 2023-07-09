@@ -48,3 +48,11 @@ def agree(request, proposal_number: str = None):
         template_name="agree.html",
         context={"proposal_number": proposal_number},
     )
+
+@login_required
+def decline(request, proposal_number: str = None):
+    return render(
+        request=request,
+        template_name="decline.html",
+        context={"proposal_number": proposal_number},
+    )

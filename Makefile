@@ -33,8 +33,12 @@ deploy:
 upgrade:
 	pip-upgrade
 
-update:
+requirements:
 	pip freeze > requirements.txt
 
 print:
 	echo "$(msg)"
+
+install:
+	pip install pip-upgrader
+	pip-upgrade

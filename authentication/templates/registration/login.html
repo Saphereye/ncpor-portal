@@ -1,15 +1,24 @@
-{% if division %}
-    <h1>Welcome to {{ division }} Expedition Proposal Submission</h1>
-{% else %}
-<h1>Welcome to Expedition Proposal Submission</h1>
-{% endif %}
+{% extends 'base.html' %}
 
-<form action='' method='POST'>
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Login</button>
-</form>
+{% block title%}Login{% endblock %}
 
-Forgot Password
+{% block head %}Login{% endblock %}
 
-<a href="/register">Register</a>
+{% block content %}
+
+<div style="width: 50%; margin: auto; padding: 50px;">
+    <h2>Welcome to Expedition Proposal Submission</h2>
+    
+    <form action='' method='POST'>
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit">Login</button>
+    </form>
+
+    Forgot Password
+
+    <a href="/register">Register</a>
+</div>
+{% endblock %}

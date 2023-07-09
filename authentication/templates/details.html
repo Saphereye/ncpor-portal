@@ -1,7 +1,22 @@
-<h1>Register for Arctic Expedition Proposal part 2</h1>
+{% extends 'base.html' %}
 
-<form method="POST">
-    {% csrf_token %}
-    {{ details_form.as_p }}
-    <button type="submit">Finish Registration</button>
-</form>
+{% block title%}Register part 2{% endblock %}
+
+{% block head %}Register part 2{% endblock %}
+
+{% block content %}
+
+    <div style="width: 50%; margin: auto; padding: 50px;">
+
+        <h2>Register for Arctic Expedition Proposal part 2</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ details_form.as_table }}
+            </table>
+            <button type="submit">Finish Registration</button>
+        </form>
+
+    </div>
+{% endblock %}

@@ -6,10 +6,16 @@ from .models import Details, Files, IncompleteProposals
 from django.shortcuts import get_object_or_404
 from django.forms.models import model_to_dict
 from hashlib import shake_256
+from review.models import Revisers
+from django.db.models import Subquery
+from datetime import datetime
 
 
 @login_required
 def home(request):
+    entries_in_revisers = Revisers.objects.all().values("proposal_number")
+    result = Details.objects.exclude(proposal_number=Subquery(entries_in_revisers))
+    print(result.values())
     return render(
         request=request,
         template_name="home.html",
@@ -18,6 +24,10 @@ def home(request):
                 email=request.user.email
             ).count(),
             "all": Details.objects.filter(email=request.user.email).count(),
+            "num_of_agreed": Revisers.objects.filter(
+                reviser_email=request.user.email
+            ).count(),
+            "num_of_pending": result.count(),
         },
     )
 
@@ -30,8 +40,8 @@ def submit(request):
 
 @login_required
 def submit_details(request, title: str = ""):
-    if title != '':
-        title  = title.replace('_', ' ')
+    if title != "":
+        title = title.replace("_", " ")
     details_form = DetailsForm()
     if request.method == "POST":
         if title != "":
@@ -48,7 +58,9 @@ def submit_details(request, title: str = ""):
                 email=request.user.email, title=title
             )
             details.email = request.user.email
-            details.proposal_number = shake_256(str(details).encode()).hexdigest(6)
+            details.proposal_number = shake_256(
+                (str(details) + str(datetime.now())).encode()
+            ).hexdigest(6)
             details.save()
             messages.success(request, "Details saved successful.")
             return redirect(f"/proposals/submit/files/{title.replace(' ', '_')}/")
@@ -76,8 +88,8 @@ def submit_details(request, title: str = ""):
 
 @login_required
 def submit_files(request, title: str = ""):
-    if title != '':
-        title  = title.replace('_', ' ')
+    if title != "":
+        title = title.replace("_", " ")
     files_form = FilesForm()
     if request.method == "POST":
         try:
@@ -134,7 +146,7 @@ def submit_files(request, title: str = ""):
 @login_required
 def submit_summary(request, title: str = ""):
     if title != "":
-        title = title.replace('_', ' ')
+        title = title.replace("_", " ")
     if request.method == "POST":
         try:
             proposal = IncompleteProposals.objects.get(
@@ -232,7 +244,14 @@ def all(request):
             temp.update(i)
             temp.update(files)
             output.append(
-                [(' '.join((i.replace('_', ' ').capitalize()).split()[:3]), j if j != "" else "No") for i, j in temp.items() if i not in ["email"]]
+                [
+                    (
+                        " ".join((i.replace("_", " ").capitalize()).split()[:3]),
+                        j if j != "" else "No",
+                    )
+                    for i, j in temp.items()
+                    if i not in ["email"]
+                ]
             )
         except Files.DoesNotExist:
             pass

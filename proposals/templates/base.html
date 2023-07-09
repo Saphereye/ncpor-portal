@@ -14,24 +14,30 @@
     <!-- <link rel="stylesheet" type='css' href="{% static 'main.css' %}"> -->
 </head>
 
-<body style="background-image: url('https://ncpor.res.in/upload/background/Background/big/Background-45.jpg'); height: 100%">
+<body style="background-image: url('/static/Background.jpg'); height: 100%">
     <div class="container" style="width: 75%">
         <nav>
             <ul class="nav bg-info">
-                <li class="nav-item">
-                    <a class="nav-link" href="/proposals/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Call for Proposal</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/proposals/submit">Submit new Proposal</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proposals/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Call for Proposal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proposals/submit">Submit new Proposal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Help</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accounts/login">Login</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="https://ncpor.res.in">NCPOR</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Help</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/analysis">Data Analysis</a>

@@ -1,11 +1,25 @@
-{% if user.is_authenticated %}
-You are logged in
-{% else %}
-<h1>Register for Arctic Expedition Proposal part 1</h1>
+{% extends 'base.html' %}
 
-<form method="POST">
-    {% csrf_token %}
-    {{ register_form }}
-    <button type="submit">Go to Part 2</button>
-</form>
-{% endif %}
+{% block title%}Register part 1{% endblock %}
+
+{% block head %}Register part 1{% endblock %}
+
+{% block content %}
+
+<div style="width: 50%; margin: auto; padding: 50px;">
+
+    {% if user.is_authenticated %}
+    You are logged in
+    {% else %}
+    <h1>Register for Arctic Expedition Proposal part 1</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ register_form.as_table }}
+        </table>
+        <button type="submit">Go to Part 2</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
