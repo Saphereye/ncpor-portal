@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'analysis',
     'review',
+    'extras',
 ]
 
 MIDDLEWARE = [

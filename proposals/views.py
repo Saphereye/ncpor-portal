@@ -9,6 +9,9 @@ from hashlib import shake_256
 from review.models import Revisers
 from django.db.models import Subquery
 from datetime import datetime
+import requests
+import json
+
 
 
 @login_required

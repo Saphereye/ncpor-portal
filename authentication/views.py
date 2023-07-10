@@ -50,7 +50,7 @@ def register(request):
             user = register_form.save()
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect("/details")
+            return redirect("/authentication/details")
         messages.error(request, "Unsuccessful registration. Invalid information.")
     register_form = RegisterForm()
     return render(

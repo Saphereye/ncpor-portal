@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title%}Credits{% endblock %}
+
+{% block head %}Credits{% endblock %}
+
+{% block content %}
+<div style="width: 75%; margin: auto; padding: 50px;">
+    This website was made by <a href="https://github.com/Saphereye">Adarsh Das</a> as a project for Practice School 2023 at BITS, Goa
+</div>
+
+
+<div class="container" style="width: 75%; margin: auto; padding: 50px;">
+    <div class="row">
+      <div class="col-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+            <path d="M100,20 C40,80 40,120 100,180 C160,120 160,80 100,20 Z" fill="#FFF" stroke="#000" stroke-width="4" />
+            <circle cx="100" cy="100" r="40" fill="#00F"/>
+            <circle cx="100" cy="100" r="30" fill="#00CBFE"/>
+            <circle cx="100" cy="100" r="20" fill="#000"/>
+        </svg>
+      </div>
+      <div class="col-sm">
+        <h3>Quote of the day</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        {% for i, j in quote %}
+                            <th>{{ i }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                
+                    <tbody>
+                            <tr>
+                                {% for i, j in quote %}
+                                <td>{{ j }}</td>
+
+                {% endfor %}
+                            </tr>
+                    </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

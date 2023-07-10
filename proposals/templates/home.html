@@ -5,9 +5,13 @@
 {% block head %}Home{% endblock %}
 
 {% block content %}
-    Hi {{ user.email }}!
+    Hi {{ user.email }}!        
+      
 
     <div style="width: 50%; margin: auto; padding: 50px;">
+        {% if user.is_superuser %}
+            <a href="/admin">Admin Mode</a>
+        {% endif %}
         {% if user.is_staff %}
             <h2>Revision Assignments</h2>
             <ul>

@@ -7,8 +7,6 @@
 {% block content %}
 
 <div style="width: 50%; margin: auto; padding: 50px;">
-    <h2>Welcome to Expedition Proposal Submission</h2>
-    
     <form action='' method='POST'>
         {% csrf_token %}
         <table>
@@ -19,6 +17,6 @@
 
     Forgot Password
 
-    <a href="/register">Register</a>
+    <a href="/authentication/register">Register</a>
 </div>
 {% endblock %}

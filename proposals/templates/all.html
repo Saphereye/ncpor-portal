@@ -16,15 +16,15 @@
             </tr>
         </thead>
         {% for row in output %}
-        <tbody>
-                <tr>
+            <tbody>
+                    <tr>
 
-            {% for title, value in row %}
-                    <td>{{ value }}</td>
-            {% endfor %}
-                </tr>
-        </tbody>
-    {% endfor %}
+                {% for title, value in row %}
+                        <td>{{ value }}</td>
+                {% endfor %}
+                    </tr>
+            </tbody>
+        {% endfor %}
 </table>
 </div>
 {% else %}
