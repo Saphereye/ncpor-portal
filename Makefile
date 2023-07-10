@@ -1,27 +1,32 @@
-all: pull migrate site server
+all: pull upgrade migrate site server
 
-pull:
+.PHONY: help
+
+help: ## Provides all functions with a help string
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+pull: ## Pull from github
 	git pull
 
-server:
+server: ## Runserver
 	python3 manage.py runserver
 
-migrate:
+migrate: ## Make model migrations
 	python3 manage.py makemigrations
 	python3 manage.py migrate
 
-site:
+site: ## Opens development site on firefox
 	firefox http://127.0.0.1:8000/
 
-static:
+static: ## Put all staticfiles in staticfiles folder
 	python3 manage.py collectstatic
 
-app:
+app: ## Create new app
 	python3 manage.py startapp $(name)
 
-# Use it like make deploy msg="Made some changes"
-deploy:
+deploy: ## Use it as {make deploy msg="Made some changes"} to deploy to github
 	git pull
+	pip-upgrade
 	pip freeze > requirements.txt
 	python3 manage.py makemigrations
 	python3 manage.py migrate
@@ -30,15 +35,18 @@ deploy:
 	git commit -m "$(msg)"
 	git push
 
-upgrade:
+upgrade: ## Upgrade all pip modules from requirements.txt
 	pip-upgrade
 
-requirements:
+requirements: ## Write requirements.txt
 	pip freeze > requirements.txt
 
-print:
-	echo "$(msg)"
-
-install:
+install: ## Install all modules from requirements.txt
 	pip install pip-upgrader
 	pip-upgrade
+
+rand: ## Returns a random number
+	@python -c "import random; print(random.randint(1, 100))"
+
+time: ## Returns the current time
+	@python -c "from datetime import datetime; print(datetime.now())"

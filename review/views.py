@@ -23,7 +23,7 @@ def revision(request, proposal_number: str = None):
     output = pd.DataFrame(output)
     output = output[["title_of_proposal", "key_words", "proposal_number"]]
     output = output[~output["proposal_number"].isin(Revisers.objects.values_list("proposal_number", flat=True))]
-    output.index += 1
+    print(output.head())
     heads = ["Sr. No"] + list(output.columns)
     output = list(output.itertuples(index=True))
     return render(

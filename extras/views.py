@@ -11,6 +11,7 @@ def credits(request):
         request=request,
         template_name="credits.html",
         context={"quote": quote},
+        status=418
     )
 
 def home(request):
