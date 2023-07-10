@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 import json
 
@@ -12,3 +12,6 @@ def credits(request):
         template_name="credits.html",
         context={"quote": quote},
     )
+
+def home(request):
+    return redirect("/proposals/home")
