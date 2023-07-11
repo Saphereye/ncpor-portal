@@ -6,19 +6,32 @@ from .models import Details, Files, IncompleteProposals
 from django.shortcuts import get_object_or_404
 from django.forms.models import model_to_dict
 from hashlib import shake_256
-from review.models import Revisers
 from django.db.models import Subquery
 from datetime import datetime
 import requests
 import json
+import authentication.models
 
 
 
 @login_required
 def home(request):
-    entries_in_revisers = Revisers.objects.all().values("proposal_number")
-    result = Details.objects.exclude(proposal_number=Subquery(entries_in_revisers))
-    print(result.values())
+    # entries_in_revisers = Revisers.objects.all().values("proposal_number")
+    # result = Details.objects.exclude(proposal_number=Subquery(entries_in_revisers))
+    # print(result.values())
+    # print(authentication.models.CustomUser.objects.filter(email=request.user.email).values()[0]["id"])
+    is_pi = False
+    is_verifier = False
+    is_coordinator = False
+    try:
+        user = authentication.models.Details.objects.filter(email=request.user.email).values()[0]
+        print(user)
+        is_pi = user["is_pi"]
+        is_verifier = user["is_verifier"]
+        is_coordinator = user["is_coordinator"]
+    except:
+        pass
+
     return render(
         request=request,
         template_name="home.html",
@@ -27,10 +40,10 @@ def home(request):
                 email=request.user.email
             ).count(),
             "all": Details.objects.filter(email=request.user.email).count(),
-            "num_of_agreed": Revisers.objects.filter(
-                reviser_email=request.user.email
-            ).count(),
-            "num_of_pending": result.count(),
+            "is_pi" : is_pi,
+            "is_verifier" : is_verifier,
+            "is_coordinator" : is_coordinator,
+            "total_proposals" : Details.objects.all().count()
         },
     )
 

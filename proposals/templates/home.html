@@ -5,17 +5,17 @@
 {% block head %}Home{% endblock %}
 
 {% block content %}
-    Hi {{ user.email }}!        
-      
+    Hi {{ user.email }}!    
 
     <div style="width: 50%; margin: auto; padding: 50px;">
         {% if user.is_superuser %}
             <a href="/admin">Admin Mode</a>
         {% endif %}
-        {% if user.is_staff %}
+        {% if is_verifier %}
+        <h1>Verifier</h1>
             <h2>Revision Assignments</h2>
             <ul>
-                <li><a href="/review">Request received to Review of Proposal</a></li>
+                <li><a href="/reviewer/pending/">Request received to Review of Proposal</a></li>
                 <li>Accepted to Review ({{ num_of_agreed }})</li>
                 <li>Pending Review ({{ num_of_pending }})</li>
                 <li>Submitted Review Recommendations (0)</li>
@@ -28,6 +28,8 @@
             </ul>
         {% endif %}
 
+        {% if is_pi %}
+        <h1>PI</h1>
         <h2>New Submissions</h2>
         <ul>
             <li><a href="/proposals/submit">Submit New Proposal</a></li>
@@ -47,6 +49,15 @@
         <ul>
             Submissions with a Decision (0)
         </ul>
+        {% endif %}
+
+        {% if is_coordinator %}
+        <h1>Coordinator</h1>
+            <ul>
+                <li><a href="/coordinator/all">All proposals</a> ({{ total_proposals }})</li>
+                <li><a href="/coordinator/assign">Assign Reviewers</a></li>
+            </ul>
+        {% endif %}
     </div>
 
     <p><a href="{% url 'logout' %}">Log Out</a></p>

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title%}Pending reviews{% endblock %}
+
+{% block head %}Pending reviews{% endblock %}
+
+{% block content %}
+<div style="width: 50%; margin: auto; padding: 50px;">
+    {% if description %}
+    <h2>Details of proposal number {{ proposal_number }}</h2>
+    <div class="table-responsive">
+        <table class="table">
+            {% for d in description %}
+            <thead>
+                <tr>
+                    {% for i, j in d %}
+                        <th>{{ i }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for i, j in d %}
+                        <td>{{ j }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+    {% if proposals %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Proposal Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in proposals %}
+                    <tr>
+                        <td>{{p.proposal_number}}</td>
+                        <td>
+                            <ul>
+                                <li><a href="/reviewer/pending/{{p.proposal_number}}">View Description</a></li>
+                                <li><a href="#">Agree</a></li>
+                                <li><a href="#">Disagree</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2>No reviews for you currently</h2>
+    {% endif %}
+</div>
+{% endblock %}

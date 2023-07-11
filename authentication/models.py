@@ -44,19 +44,21 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
 
 class Details(models.Model):
-    GENDER_CHOICES = (
-            ('M', 'Male'),
-            ('F', 'Female'),
-            ('O', 'Other'),
-        )
-    
-    email = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=20, default="", null=False)
     last_name = models.CharField(max_length=20, default="", null=False)
     mobile = PhoneNumberField()
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
+    )
     gender = models.CharField(max_length = 1,choices = GENDER_CHOICES, null=False)
     qualification = models.CharField(max_length=20, null=False)
     designation = models.CharField(max_length=20, null=False)
     institute = models.CharField(max_length=20, null=False)
     address = models.CharField(max_length=20, null=False)
+    is_pi = models.BooleanField(default=True)
+    is_verifier = models.BooleanField(default=False)
+    is_coordinator = models.BooleanField(default=False)
 

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title%}All Proposals{% endblock %}
+
+{% block head %}All Proposals{% endblock %}
+
+{% block content %}
+
+{% if output %}
+<div class="table-responsive">
+<table class="table">
+        <thead>
+            <tr>
+                {% for row, _ in heads %}
+                    <th>{{ row }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        {% for row in output %}
+            <tbody>
+                    <tr>
+                        {% for title, value in row %}
+                            {% if title == "Proposal number" %}
+                                <td><a href="/coordinator/assign/{{value}}">{{ value }}</a></td>
+                            {% else %}
+                                <td>{{ value }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+            </tbody>
+        {% endfor %}
+</table>
+</div>
+{% else %}
+No Proposal complete
+{% endif %}
+
+{% endblock %}

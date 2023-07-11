@@ -24,5 +24,5 @@ class RegisterForm(UserCreationForm):
 class DetailsForm(forms.ModelForm):
     class Meta:
         model = Details
-        exclude = ("email",)
+        exclude = ("email","is_pi", "is_verifier", "is_coordinator")
         

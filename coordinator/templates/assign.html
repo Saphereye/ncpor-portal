@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title%}Assigning Reviewers{% endblock %}
+
+{% block head %}Assigning Reviewers{% endblock %}
+
+{% block content %}
+<div style="width: 75%; margin: auto; padding: 50px;">
+    {% if proposal_number %}
+        <h2>Adding reviewers for proposal number {{ proposal_number }}</h2>
+    {% endif %}
+    
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+        <button type="submit">Assign these reviewers</button>
+    </form>
+</div>
+{% endblock %}
