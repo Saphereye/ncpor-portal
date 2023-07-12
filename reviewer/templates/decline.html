@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title%}Decline{% endblock %}
+
+{% block head %}Decline{% endblock %}
+
+{% block content %}
+<div style="width: 50%; margin: auto; padding: 50px;">
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table">
+            {{ decline_form.as_table }}
+        </table>
+        <button type="submit">Continue</button>
+    </form>
+</div>
+{% endblock %}

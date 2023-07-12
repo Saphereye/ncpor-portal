@@ -5,6 +5,7 @@ from .models import Details, Files, IncompleteProposals
 class ProposalsDetailsAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Details._meta.get_fields() if field.concrete]
     list_filter = ("major_discipline", "Ongoing/New")
+    search_fields = ("proposal_number",)
 
 @admin.register(Files)
 class FilesAdmin(admin.ModelAdmin):

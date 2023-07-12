@@ -5,11 +5,15 @@ import proposals.models
 from django.forms.models import model_to_dict
 from .forms import AssignedForm
 import authentication.models
+from django.db.models import Subquery, OuterRef
+import reviewer.models
 
 
 @login_required
 def all(request):
-    details = [i for i in list(proposals.models.Details.objects.all().values())]
+    details = [i for i in list(proposals.models.Details.objects.exclude(
+    proposal_number__in=Subquery(reviewer.models.RequestToReview.objects.values('proposal_number'))
+).values())]
     print(f"{details=}")
     output = []
     for index, i in enumerate(details):

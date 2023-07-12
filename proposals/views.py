@@ -11,7 +11,7 @@ from datetime import datetime
 import requests
 import json
 import authentication.models
-
+import reviewer.models
 
 
 @login_required
@@ -24,7 +24,9 @@ def home(request):
     is_verifier = False
     is_coordinator = False
     try:
-        user = authentication.models.Details.objects.filter(email=request.user.email).values()[0]
+        user = authentication.models.Details.objects.filter(
+            email=request.user.email
+        ).values()[0]
         print(user)
         is_pi = user["is_pi"]
         is_verifier = user["is_verifier"]
@@ -40,10 +42,16 @@ def home(request):
                 email=request.user.email
             ).count(),
             "all": Details.objects.filter(email=request.user.email).count(),
-            "is_pi" : is_pi,
-            "is_verifier" : is_verifier,
-            "is_coordinator" : is_coordinator,
-            "total_proposals" : Details.objects.all().count()
+            "is_pi": is_pi,
+            "is_verifier": is_verifier,
+            "is_coordinator": is_coordinator,
+            "total_proposals": Details.objects.all().count(),
+            "num_of_pending": reviewer.models.RequestToReview.objects.filter(
+                email=request.user.email
+            ).count(),
+            "num_of_agreed": reviewer.models.RequestToReview.objects.filter(
+                email=request.user.email, accepted=True
+            ).count(),
         },
     )
 
