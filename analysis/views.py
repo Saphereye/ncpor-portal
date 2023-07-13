@@ -80,14 +80,16 @@ def main(request):
             x=df["Date"],
             y=df["Time"],
             z=df["BC6"],
+            # Teal also looks nice
+            colorscale="ice"
         )
 
         layout = go.Layout(
             title="BC6 yearly data",
-            xaxis=dict(title="Date"),
-            yaxis=dict(title="Time"),
+            xaxis=dict(title="Date", showgrid=False),
+            yaxis=dict(title="Time", showgrid=False),
             height=800,
-            width=1000
+            width=1000,
         )
 
         heatmap_figure = go.Figure(data=[heatmap], layout=layout)
