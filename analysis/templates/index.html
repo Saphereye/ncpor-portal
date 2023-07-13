@@ -8,7 +8,7 @@
 {% block head %}Data Analysis{% endblock head %}
 
 {% block content %}
-    <div style="width: 75%; margin: auto; padding: 50px;">
+    {% comment %} <div style="width: 75%; margin: auto; padding: 50px;">
         <form method="POST">
             {% csrf_token %}
             <table>
@@ -16,9 +16,11 @@
             </table>
             <button type="submit">Continue</button>
         </form>
-    </div>
+    </div> {% endcomment %}
 
-    {% autoescape off %}
-    {{ plot_div }}
-    {% endautoescape %}
+    <div style="width: 100%; margin: auto; padding: 50px;">
+        {% autoescape off %}
+        {{ plot_div }}
+        {% endautoescape %}
+    </div>
 {% endblock %}
