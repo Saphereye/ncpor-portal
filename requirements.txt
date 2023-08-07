@@ -10,7 +10,7 @@ django-phonenumber-field==7.1.0
 docopt==0.6.2
 gunicorn==21.2.0
 idna==3.4
-numpy==1.25.1
+numpy==1.25.2
 packaging==23.1
 pandas==2.0.3
 phonenumbers==8.13.17
