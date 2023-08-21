@@ -24,7 +24,7 @@ requests==2.31.0
 six==1.16.0
 soupsieve==2.4.1
 sqlparse==0.4.4
-tenacity==8.2.2
+tenacity==8.2.3
 terminaltables==3.1.10
 typing_extensions==4.7.1
 tzdata==2023.3
