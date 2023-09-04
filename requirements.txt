@@ -12,7 +12,7 @@ gunicorn==21.2.0
 idna==3.4
 numpy==1.25.2
 packaging==23.1
-pandas==2.0.3
+pandas==2.1.0
 phonenumbers==8.13.18
 pip-upgrade==0.0.6
 pip-upgrader==1.4.15
