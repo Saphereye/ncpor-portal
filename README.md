@@ -1,3 +1,2 @@
 # Proposal submission cum Data visualisation website
-This was a project for my research internship at NCPOR, Goa
-![image](https://github.com/Saphereye/adarsh_ncpor_site/assets/59739923/0a867176-dbde-4d45-a343-6c4fe836f2f6)
+This was a project for my research internship at NCPOR, Goa. The project was made using Django. It supports a step by step research submission portal and features such as email verification for proposal acceptance. It also includes a page for visualizing BC6 carbon data.
